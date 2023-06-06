@@ -1,4 +1,6 @@
-# Install conda and required packages in bash/terminal
+# Local BLAST tutorial using a custom sequence database
+
+## Install conda and required packages in bash/terminal
 
 Download and install [miniconda](https://docs.conda.io/en/latest/miniconda.html). Then, open terminal and create a new environment called "BLAST" to install [BLAST+](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html#downloadblastdata), [seqkit](https://bioinf.shenwei.me/seqkit/), and [fastx-toolkit](http://hannonlab.cshl.edu/fastx_toolkit/). Remember to activate your BLAST environment whenever you use these tools.
 
@@ -10,7 +12,7 @@ conda install -n BLAST -c biobuilds fastx-toolkit
 conda activate BLAST
 ```
 
-# Retrieve sequence accessions from [NCBI nucleotide](https://www.ncbi.nlm.nih.gov/nucleotide/) in your web browser
+## Retrieve sequence accessions from [NCBI nucleotide](https://www.ncbi.nlm.nih.gov/nucleotide/) in your web browser
 
 Use filters to query the NCBI nucleotide database to retrieve desired sequence accessions, for example:
 
@@ -20,7 +22,7 @@ Would retrieve accessions for all ITS1-ITS2 region sequences in fungi.
 
 Save these as a plain .txt file by clicking "Send to" "File" and choose format "Accession list".
 
-# Retrieved fasta sequences using [reutils](https://cran.r-project.org/web/packages/reutils/index.html) in R
+## Retrieved fasta sequences using [reutils](https://cran.r-project.org/web/packages/reutils/index.html) in R
 
 In this loop, we chunk the retrieval of FASTA sequences of the selected accessions from NCBI. We do this because efetch will hang if you try to retrieve > 10000 sequences at once. Save these to a directory called "fasta" within the working directory.
 
@@ -37,7 +39,7 @@ for(i in 1:length(chunks)){
 }
 ```
 
-# Prepare local blast sequence database in bash/terminal
+## Prepare local blast sequence database in bash/terminal
 
 Combine the chunks into a single fasta file:
 
@@ -67,10 +69,8 @@ Make local blast database. Change "localbastdb" to your desired database name.
 makeblastdb -in sequences.fasta -out localbastdb -dbtype nucl -hash_index
 ```
 
-# Run blast using your local sequence database. See the [BLAST+ documentation](https://www.ncbi.nlm.nih.gov/books/NBK279690/) for details.
+## Run blast using your local sequence database. See the [BLAST+ documentation](https://www.ncbi.nlm.nih.gov/books/NBK279690/) for details.
 
 ```
 blastn -db localbastdb -query query_file.fasta -out output_file.txt
 ```
-
-
