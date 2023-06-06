@@ -2,13 +2,12 @@
 
 ## Install conda and required packages in bash/terminal
 
-Download and install [miniconda](https://docs.conda.io/en/latest/miniconda.html). Then, open terminal and create a new environment called "BLAST" to install [BLAST+](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html#downloadblastdata), [seqkit](https://bioinf.shenwei.me/seqkit/), and [fastx-toolkit](http://hannonlab.cshl.edu/fastx_toolkit/). Remember to activate your BLAST environment whenever you use these tools.
+Download and install [miniconda](https://docs.conda.io/en/latest/miniconda.html). Then, open terminal and create a new environment called "BLAST" to install [BLAST+](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html#downloadblastdata) and [seqkit](https://bioinf.shenwei.me/seqkit/). Remember to activate your BLAST environment whenever you use these tools.
 
 ```
 conda create --name BLAST
 conda install -n BLAST -c bioconda blast
 conda install -n BLAST -c bioconda seqkit
-conda install -n BLAST -c biobuilds fastx-toolkit
 conda activate BLAST
 ```
 
